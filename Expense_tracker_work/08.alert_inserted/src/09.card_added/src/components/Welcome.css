@@ -1,0 +1,50 @@
+.tostore{
+    
+ background-color: white;
+ height: 600px;
+ margin-top: 2px;
+ text-align: center;
+ padding-top: 50px;
+ padding-right: 120px;
+ padding-left: 120px;
+    
+    
+      
+}
+
+@media screen and (max-width: 768px) {
+    .tostore{
+        height: 800px;
+        padding-right: 50px;
+        padding-left: 50px;
+    }
+    
+}
+
+.total_icon{
+    font-size: 50px;
+    color: rgb(6, 121, 6);
+    margin-left: 60px;
+    margin-top: 10px;
+}
+
+.add_expense_icon{
+    font-size: 50px;
+    color: rgb(170, 16, 16);
+    margin-left: 90px;
+    margin-top: 10px;
+}
+
+.total_customer{
+    color: yellowgreen;
+    font-size: 40px;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+.spending_icon{
+    font-size: 50px;
+    color: rgb(43, 125, 226);
+    margin-left: 50px;
+    margin-top: 10px;
+}

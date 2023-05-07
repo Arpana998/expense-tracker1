@@ -1,0 +1,9 @@
+/* .expenselist-container{
+    margin: 50px;
+} */
+
+.darkThemeExpenseList{
+    background-color: black;
+    opacity: 0.8;
+    background-clip: border-box;
+}
