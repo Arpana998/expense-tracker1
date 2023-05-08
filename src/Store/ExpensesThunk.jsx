@@ -64,7 +64,12 @@ export const fetchData = () => {
     };
 
     try {
-      const receivedData = await getData();
+      let receivedData = await getData();
+      receivedData = receivedData || {
+        expense: {},
+        isPremium: false,
+        isDownloaded: false,
+      };
       dispatch(expenseItemSliceActions.getDataOnReload(receivedData));
       dispatch(authActions.onReloadActivatePremium(receivedData));
       dispatch(authActions.onDownloadEnabled(receivedData));
@@ -86,37 +91,3 @@ export const fetchData = () => {
 };
 
 export default expensesThunk;
-
-// export const getData = () => {
-//   console.log("get data called");
-//   let useremail = localStorage.getItem("email");
-//   useremail = useremail.replace("@", "").replace(".", "");
-//   return async (dispatch) => {
-//     try {
-//       const response = await fetch(
-//         `https://expensetrackerauth-b8c3c-default-rtdb.firebaseio.com/expenses/${useremail}.json`
-//       );
-//       console.log("data fetched");
-//       if (!response.ok) {
-//         throw new Error("Unable to get data");
-//       }
-//       const res = await response.json();
-//       console.log(res);
-//       console.log("responce line");
-//       dispatch(
-//         notifyActions.display({
-//           message: "Data received successfully",
-//           status: "success",
-//         })
-//       );
-//     } catch (error) {
-//       console.log("get data failed");
-//       dispatch(
-//         notifyActions.display({
-//           message: "Unable to receive data",
-//           status: "Failed",
-//         })
-//       );
-//     }
-//   };
-// };

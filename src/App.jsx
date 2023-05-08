@@ -1,4 +1,4 @@
-import { Form, Route, Routes } from "react-router-dom";
+import { Form, Route, Routes, useNavigate, Navigate } from "react-router-dom";
 import "./App.css";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
@@ -11,9 +11,9 @@ import MainPage from "./components/MainPage";
 import expensesThunk, { fetchData } from "./Store/ExpensesThunk";
 import { useEffect } from "react";
 import { expenseItemSliceActions } from "./Store/expenseItemSlice";
+import "./components/Welcome.css";
 
 let initialEffect = false;
-let toReload = false;
 function App() {
   const auth = useSelector((state) => state.auth.isPremium);
   const downloadStatus = useSelector((state) => state.auth.isDownloadEnable);
@@ -23,14 +23,17 @@ function App() {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (authentication) {
       dispatch(fetchData());
+      authentication && navigate("/welcome");
     }
-  }, [dispatch]);
+  }, [authentication]);
 
   useEffect(() => {
-    if (initialEffect === true) {
+    if (initialEffect) {
       let sum = 0;
       for (const key in expenses) {
         sum += expenses[key].amount;
@@ -42,19 +45,17 @@ function App() {
   }, [expenses, auth, downloadStatus]);
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-      }}
-    >
+    <>
       <Navbar />
       {createPortal(<Notification />, document.getElementById("notification"))}
       {createPortal(<ExpenseForm />, document.getElementById("expenseForm"))}
       <Routes>
         <Route path='/' element={<Login />} />
-        <Route path='/welcome' element={<MainPage />} />
+        {authentication && <Route path='/welcome' element={<MainPage />} />}
+        {!authentication && <Route path='*' element={<Navigate to='/' />} />}
+        <Route path='*' element={<Navigate to='/welcome' />} />
       </Routes>
-    </div>
+    </>
   );
 }
 

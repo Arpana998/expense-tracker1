@@ -6,7 +6,7 @@ import authenticateUser from "../Store/authAction";
 import { Icon } from "@iconify/react";
 
 const Login = () => {
-  const [signIn, setSignIn] = useState(false);
+  const [signIn, setSignIn] = useState(true);
 
   const auth = useSelector((state) => state.auth);
 
@@ -18,12 +18,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   const signUpHandler = () => {
-    setSignIn(true);
+    setSignIn(!signIn);
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    let password;
 
     const obj = {
       inputEmail: emailRef.current.value,
@@ -33,26 +32,23 @@ const Login = () => {
 
     // authenticateUser({ email: inputEmail, password: inputPassword, signIn: signIn });
     dispatch(authenticateUser(obj)); //sending data to thunk
-
-    navigate("/welcome");
   };
 
   return (
     <div className='login template d-flex justify-content-center align-items-center vh-100 bg-primary'>
       <div className='form_container shadow p-5 rounded bg-white'>
         <form>
-          {signIn && (
+          {!signIn && (
             <div className='text-center pb-3'>
               <Icon className='login-icon' icon='material-symbols:lock-clock-rounded' />
             </div>
           )}
-          {!signIn && (
+          {signIn && (
             <div className='text-center pb-3'>
               <Icon className='login-icon' icon='material-symbols:lock-open-right' />
             </div>
           )}
-          {signIn && <h3 className='text-center'>Sign Up</h3>}
-          {!signIn && <h3 className='text-center'>Sign In</h3>}
+          <h3 className='text-center'>{signIn ? "Sign In" : "Sign Up"}</h3>
           <div className='mb-3'>
             <label htmlFor='email' className='mb-2'>
               Email
@@ -77,7 +73,7 @@ const Login = () => {
               required
             />
           </div>
-          {signIn && (
+          {!signIn && (
             <div className='mb-2'>
               <label htmlFor='password' className='mb-2'>
                 Confirm Password
@@ -92,18 +88,14 @@ const Login = () => {
           )}
 
           <div className='d-grid mt-4'>
-            {signIn && <button className='btn btn-primary'>Sign up</button>}
-            {!signIn && (
-              <button className='btn btn-primary' onClick={submitHandler}>
-                Sign In
-              </button>
-            )}
+            <button className='btn btn-primary' onClick={submitHandler}>
+              {signIn ? "Sign In" : "Sign Up"}
+            </button>
           </div>
-          {!signIn && (
-            <p className='text-end mt-3' onClick={signUpHandler}>
-              Sign Up
-            </p>
-          )}
+
+          <p className='text-end mt-3' onClick={signUpHandler}>
+            {!signIn ? "Sign In" : "Sign Up"}
+          </p>
         </form>
       </div>
     </div>

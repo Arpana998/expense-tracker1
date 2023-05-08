@@ -1,103 +1,60 @@
-.tostore{
-    
- background-color: white;
-
-    
-    
-      
+.tostore {
+  background-color: white;
 }
 
-/* @media screen and (max-width: 768px) {
-    .tostore{
-        height: 800px;
-        padding-right: 50px;
-        padding-left: 50px;
-    }
-    
-} */
-
-.darkTheme{
-    background-color: black;
-    opacity: 0.8;
+.darkTheme {
+  /* background-color: black; */
+  /* opacity: 0.8;
+    z-index: -10; */
 }
 
-.darkThemeOfCard{
-    background-color: black;
-    opacity: 0.8;
-    border-color: white;
-    border-width: 2px;
-    border-radius: 10px;
-    box-shadow: 10px 10px;
+.darkThemeOfCard {
+  background-color: black;
+  opacity: 0.8;
+  border-color: white;
+  border-width: 2px;
+  border-radius: 10px;
+  box-shadow: 10px 10px;
 }
 
-.darkThemeText{
-    text-decoration-color: blanchedalmond;
-    font-weight: 200 !important;
+.darkThemeText {
+  text-decoration-color: blanchedalmond;
+  font-weight: 200 !important;
 }
 
-/* .total_icon{
-    font-size: 50px;
-    color: rgb(6, 121, 6);
-    margin-left: 60px;
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-.add_expense_icon{
-    font-size: 50px;
-    color: rgb(170, 16, 16);
-    margin-left: 90px;
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-.total_customer{
-    color: yellowgreen;
-    font-size: 40px;
-    margin-top: 10px;
-    margin-left: 50px;
-    cursor: pointer;
-} */
-
-/* .spending_icon{
-    font-size: 50px;
-    color: rgb(43, 125, 226);
-    margin-left: 50px;
-    margin-top: 10px;
-    cursor: pointer;
-} */
-
-.spending_icon, .total_customer, .add_expense_icon, .total_icon{
-    position: absolute;
-    right: 2.5rem;
-    font-size: 3rem;
-    bottom: 2rem;
+.spending_icon,
+.total_customer,
+.add_expense_icon,
+.total_icon {
+  position: absolute;
+  right: 2.5rem;
+  font-size: 3rem;
+  bottom: 2rem;
 }
 
 .total_icon {
-    color: #1d7d3a;
-    margin: -7px;
+  color: #1d7d3a;
+  margin: -7px;
 }
 
-.total_customer{
-  color:rgb(108, 146, 32);
+.total_customer {
+  color: rgb(108, 146, 32);
   font-size: 2.5rem;
 }
 
-.add_expense_icon{
-    color:rgb(169, 65, 84)
+.add_expense_icon {
+  color: rgb(169, 65, 84);
 }
 
 .spending_icon {
-    color: rgb(21, 191, 194)
+  color: rgb(21, 191, 194);
 }
 
 .download-icon {
-    color: rgb(46, 64, 200);
-    padding: 0px;
-    font-size: 3rem;
-    margin-top: 1rem;
-    margin-left: 0.5rem;
-    cursor: pointer;
-
+  color: rgb(46, 64, 200);
+  padding: 0px;
+  font-size: 3rem;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
 }

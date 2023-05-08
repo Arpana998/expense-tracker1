@@ -5,7 +5,7 @@ const authenticateUser = (data) => {
   return async (dispatch) => {
     const sendUserData = async () => {
       let url;
-      if (data.signIn) {
+      if (!data.signIn) {
         url =
           "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCguEEEoRMwtGZ-c3GxX8gPpjpqK71a9wg";
       } else {
@@ -28,6 +28,7 @@ const authenticateUser = (data) => {
         throw new Error("authentication failed");
       }
       const res = await response.json();
+      console.log(res);
       return res;
     };
 
@@ -59,23 +60,25 @@ const authenticateUser = (data) => {
 export const verifyEmail = () => {
   return async (dispatch) => {
     let authToken = localStorage.getItem("idToken");
-    console.log("calling verify mail");
     try {
       const response = await fetch(
         "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCguEEEoRMwtGZ-c3GxX8gPpjpqK71a9wg",
         {
           method: "POST",
-          requestType: "VERIFY_EMAIL",
-          idToken: authToken,
+          body: JSON.stringify({
+            requestType: "VERIFY_EMAIL",
+            idToken: authToken,
+          }),
         }
       );
+      const res = await response.json();
+      console.log(res);
       dispatch(
         notifyActions.display({
           message: "Email Verification successful",
           status: "success",
         })
       );
-      console.log("running notificatio");
     } catch (err) {
       dispatch(
         notifyActions.display({

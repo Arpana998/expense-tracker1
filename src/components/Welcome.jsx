@@ -38,21 +38,22 @@ const Welcome = () => {
   // preRequirementAmount <= 0 ? <button></button> : preRequirementAmount;
   if (10000 - expense.totalSpending <= 0) {
     preRequirementAmount = (
-      <button className='btn btn-success' onClick={premiumHandler}>
+      <button className='btn btn-success mt-3' onClick={premiumHandler}>
         Activate
       </button>
     );
   }
 
   const downloadHandler = () => {
-    const expenses = [];
-    expenses.push(Object.values(expense.expenseList));
-    console.log(expenses);
+    const expenses = Object.values(expense.expenseList);
+
+    // let obj = Object.entries(expense.expenseList);
+    // obj.map((item) => console.log(item[1].category));
 
     const header = Object.keys(expenses[0]).join(",") + "\n";
     const csv = header + expenses.map((obj) => Object.values(obj).join(",")).join("\n");
 
-    const blob = new Blob([csv], { type: "text/csv" });
+    const blob = new Blob([csv], { type: "text/csv" }); //csv = file extension used in spread sheet
     const url = URL.createObjectURL(blob);
 
     const fileName = "Expenses " + new Date().toLocaleString() + ".csv";
@@ -68,21 +69,7 @@ const Welcome = () => {
         status: "success",
       })
     );
-    // let expenseArrayKeys = Object.keys(expense.expenseList);
-    // let expenseArrayValues = Object.values(expense.expenseList);
-    // const csv = [
-    //   expenseArrayKeys.join(","),
-    //   ...expenseArrayValues.map((obj) =>
-    //     expenseArrayKeys.map((header) => `"${obj[header]}"`).join(",")
-    //   ),
-    // ].join("\n");
-    // const a = document.createElement("a");
-    // const blob = new Blob(csv, { type: "text/csv" });
-    // a.href = URL.createObjectURL(blob);
-    // a.download = "Expense Data";
-    // a.click();
   };
-  //blob converts data into file
 
   if (auth.isPremium) {
     preRequirementAmount = (

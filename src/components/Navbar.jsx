@@ -31,7 +31,12 @@ const Navbar = () => {
     <nav className='shadow navbar bg-dark' data-bs-theme='dark'>
       <div className='container-lg d-flex flex-wrap justify-content-between w-100 align-items-center flex-sm-column flex-md-row px-4'>
         <a className='navbar-brand fs-2 fw-bolder'>
-          <Icon className='expense_tracker_icon me-2' icon='solar:hand-money-bold' />
+          <img
+            src='https://cdn-icons-png.flaticon.com/512/6289/6289247.png'
+            alt='expense tracker'
+            style={{ height: "4rem" }}
+            className='me-3'
+          />
           Expense Tracker
         </a>
         <div
@@ -41,17 +46,17 @@ const Navbar = () => {
           {!auth.token && (
             <button className='btn btn-secondary position-relative me-3 '>Sign_Up</button>
           )}
-          {auth.token != null && (
+          {auth.isPremium && (
             <button className='btn btn-sm btn-secondary' onClick={darkThemeHandler}>
               Dark Theme
             </button>
           )}
-          {auth.token != null && (
+          {auth.token && (
             <button className='btn btn-secondary' onClick={logoutHandler}>
               LogOut
             </button>
           )}
-          {auth.token != null && (
+          {auth.token && (
             <button className='btn btn-secondary' onClick={verifyEmailHandler}>
               Verify_Email
             </button>

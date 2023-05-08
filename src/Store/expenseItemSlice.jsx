@@ -35,9 +35,6 @@ const expenseItemSlice = createSlice({
     },
     deleteExpenseItem(state, action) {
       delete state.expenseList[action.payload];
-
-      // state.totalSpending =
-      //   state.totalSpending + state.expenseList[action.payload.id[amount]];
     },
     idToBeEdited(state, action) {
       state.editItemId = action.payload;
